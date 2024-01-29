@@ -7,7 +7,7 @@
 #
 #* Creation Date : 29-01-2024
 #
-#* Last Modified : Monday 29 January 2024 02:01:34 PM
+#* Last Modified : Monday 29 January 2024 03:45:42 PM
 #
 #* Created By : Yaay Nands
 #_._._._._._._._._._._._._._._._._._._._._.#
@@ -183,6 +183,7 @@ class OSEnv(gym.Env, game.Game):
 
 from gym.envs.registration import register
 
+import pdb; pdb.set_trace()
 register(
     id='youaretheOS',
     entry_point='youaretheOS',
