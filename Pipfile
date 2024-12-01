@@ -10,9 +10,10 @@ pygame = "*"
 pygbag = "*"
 pylint = "*"
 autopep8 = "*"
+pytest = "*"
 
 [requires]
-python_version = "3.11"
+python_version = "3.12"
 
 [scripts]
 desktop = "python ./run-desktop.py"

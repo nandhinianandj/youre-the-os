@@ -1,5 +1,5 @@
-from lib.constants import ONE_SECOND
-from lib.game_object import GameObject
+from constants import ONE_SECOND
+from engine.game_object import GameObject
 from game_objects.views.score_manager_view import ScoreManagerView
 
 _UPDATE_INTERVAL = 100
@@ -7,8 +7,8 @@ _UPDATE_INTERVAL = 100
 
 class ScoreManager(GameObject):
 
-    def __init__(self, game):
-        self._process_manager = game.process_manager
+    def __init__(self, stage):
+        self._process_manager = stage.process_manager
 
         self._score = 0
         self._last_update_time = 0

@@ -1,26 +1,28 @@
 import pygame
 
-from lib.drawable import Drawable
-from lib.ui.color import Color
-from lib.ui.fonts import FONT_PRIMARY_XXLARGE, FONT_SECONDARY_SMALL
+from engine.drawable import Drawable
+from ui.color import Color
+from ui.fonts import FONT_PRIMARY_XXLARGE, FONT_SECONDARY_SMALL
 
 
-class KeyBindingDialogView(Drawable):
+class HokeyDialogView(Drawable):
     def __init__(self, about_dialog):
         self.about_dialog = about_dialog
         super().__init__()
 
         self._title_text = FONT_PRIMARY_XXLARGE.render(
-            'Key Bindings', True, Color.WHITE)
+            'Hotkeys', True, Color.WHITE)
 
         self._explanation_text = FONT_SECONDARY_SMALL.render(
-            'You can also use the following keys instead of the mouse:', True, Color.WHITE)
+            'Step up your game by using these hotkeys:', True, Color.WHITE)
 
         self._binding_keys = [
             FONT_SECONDARY_SMALL.render('SPACEBAR', True, Color.WHITE),
             FONT_SECONDARY_SMALL.render('1-9', True, Color.WHITE),
             FONT_SECONDARY_SMALL.render('0', True, Color.WHITE),
-            FONT_SECONDARY_SMALL.render('SHIFT + 1-6', True, Color.WHITE)
+            FONT_SECONDARY_SMALL.render('SHIFT + 1-6', True, Color.WHITE),
+            FONT_SECONDARY_SMALL.render('SHIFT + Click', True, Color.WHITE),
+            FONT_SECONDARY_SMALL.render('S', True, Color.WHITE),
         ]
 
         self._binding_explanations = [
@@ -39,7 +41,16 @@ class KeyBindingDialogView(Drawable):
             FONT_SECONDARY_SMALL.render(
                 'Remove process from a CPU between #11 and #16',
                 True,
-                Color.WHITE)]
+                Color.WHITE),
+            FONT_SECONDARY_SMALL.render(
+                'Swap a whole row of memory pages at once',
+                True,
+                Color.WHITE),
+            FONT_SECONDARY_SMALL.render(
+                'Sort Processes (once Sort button is available)',
+                True,
+                Color.WHITE),
+        ]
 
     @property
     def width(self):
@@ -47,7 +58,7 @@ class KeyBindingDialogView(Drawable):
 
     @property
     def height(self):
-        return 400
+        return 440
 
     def draw(self, surface):
         y = self.y + 40

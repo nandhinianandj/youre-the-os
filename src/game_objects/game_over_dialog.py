@@ -1,13 +1,13 @@
-from lib.game_object import GameObject
+from engine.game_object import GameObject
 from game_objects.button import Button
 from game_objects.views.game_over_dialog_view import GameOverDialogView
 
 
 class GameOverDialog(GameObject):
-    def __init__(self, uptime, difficulty, score, restart_game_fn, main_menu_fn, standalone=False):
+    def __init__(self, uptime, stage_name, score, restart_game_fn, main_menu_fn, standalone=False):
         self.uptime = uptime
         self.score = score
-        self.difficulty = difficulty
+        self.stage_name = stage_name
         self.standalone = standalone
         super().__init__(GameOverDialogView(self))
 

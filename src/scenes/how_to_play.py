@@ -2,8 +2,8 @@ from os import path
 
 import pygame
 
-from lib.ui.color import Color
-from lib.scene import Scene
+from ui.color import Color
+from engine.scene import Scene
 from game_objects.button import Button
 from game_objects.how_to_play_part import HowToPlayPart
 
@@ -53,8 +53,8 @@ _parts = [
     ),
     HowToPlayPart(
         [
-            'Over time, idle processes will go through 6 starvation levels. Each starvation level is represented by a different color and emoji.', # pylint: disable=line-too-long
-            'Assigning a process to a CPU will allow it to go back to the first starvation level after a certain time.' # pylint: disable=line-too-long
+            'Over time, idle processes go through 6 starvation levels. Each starvation level is represented by a different color and emoji.', # pylint: disable=line-too-long
+            'Assigning a process to a CPU allows it to go back to the first starvation level after a certain time.' # pylint: disable=line-too-long
         ],
         [
             pygame.image.load(path.join('assets', 'how_to_play_5_0.png')),
@@ -67,12 +67,26 @@ _parts = [
     ),
     HowToPlayPart(
         [
+            'Some processes have a crown emoji. These are priority processes.', # pylint: disable=line-too-long
+            'Priority processes require more CPU time. When idle, they go through starvation levels faster than normal processes.' # pylint: disable=line-too-long
+        ],
+        [
+            pygame.image.load(path.join('assets', 'how_to_play_6_0.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_6_1.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_6_2.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_6_3.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_6_4.png')),
+        ],
+        animation_interval=600
+    ),
+    HowToPlayPart(
+        [
             'Starvation levels help you know which processes have been idle the longest. When a process stays idle for too long,', # pylint: disable=line-too-long
             'the user becomes impatient and kills it. Your job is to avoid this by swapping processes in and out of CPUs.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_6_0.png')),
-            pygame.image.load(path.join('assets', 'how_to_play_6_1.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_7_0.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_7_1.png'))
         ]
     ),
     HowToPlayPart(
@@ -80,7 +94,7 @@ _parts = [
             'A process can also terminate gracefully. In that case, you can simply remove it by clicking on it.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_7_0.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_8_0.png'))
         ]
     ),
     HowToPlayPart(
@@ -89,7 +103,7 @@ _parts = [
             'Blocked processes waste CPU time. It is a good idea to remove them from their CPU until they are unblocked.', # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_8_0.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_9_0.png'))
         ]
     ),
     HowToPlayPart(
@@ -98,8 +112,8 @@ _parts = [
             'Make sure to click on it when it has events, otherwise your blocked processes will stay blocked until they starve.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_9_0.png')),
-            pygame.image.load(path.join('assets', 'how_to_play_9_1.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_10_0.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_10_1.png'))
         ]
     ),
     HowToPlayPart(
@@ -108,17 +122,17 @@ _parts = [
             'Pages that are currently in use appear in white. Currently unused pages appear in grey.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_10_0.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_11_0.png'))
         ]
     ),
     HowToPlayPart(
         [
             'Sometimes, you will run out of RAM and new pages will be written on disk.',
-            'You can move pages between RAM and disk by clicking on them.'
+            'You can move pages between RAM and disk by clicking on them. A small delay will be involved.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_11_0.png')),
-            pygame.image.load(path.join('assets', 'how_to_play_11_1.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_12_0.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_12_1.png'))
         ]
     ),
     HowToPlayPart(
@@ -127,8 +141,8 @@ _parts = [
             'This is when you need to swap pages! The pages that the process is trying to access will also blink.' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_12_0.png')),
-            pygame.image.load(path.join('assets', 'how_to_play_12_1.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_13_0.png')),
+            pygame.image.load(path.join('assets', 'how_to_play_13_1.png'))
         ],
         animation_interval=200
     ),
@@ -137,25 +151,27 @@ _parts = [
             "If you don\'t swap a process' pages when needed, the process will eventually starve and get killed.", # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_13_0.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_14_0.png'))
         ],
         animation_interval=200
     ),
     HowToPlayPart(
         [
-            'Once the number of killed processes reaches 10, the user gets angry and reboots you.',
+            'Once the number of killed processes reaches 10, the user gets really angry and reboots you.', # pylint: disable=line-too-long
             'The game is then over. Your goal is to survive as long as possible without getting rebooted!' # pylint: disable=line-too-long
         ],
         [
-            pygame.image.load(path.join('assets', 'how_to_play_14_0.png'))
+            pygame.image.load(path.join('assets', 'how_to_play_15_0.png'))
         ]
     )
 ]
 
 
 class HowToPlay(Scene):
-    def __init__(self, screen, scenes):
-        super().__init__(screen, scenes, background_color=Color.LIGHT_GREY)
+    def __init__(self):
+        super().__init__('how_to_play')
+
+        self.background_color=Color.LIGHT_GREY
 
         self._parts = []
         self._current_part_id = 0
@@ -173,14 +189,14 @@ class HowToPlay(Scene):
         self._previous_button = Button('<', self._go_to_previous_part)
         self._previous_button.view.set_xy(
             52,
-            self._screen.get_height() - 78
+            self.screen.get_height() - 78
         )
         self._scene_objects.append(self._previous_button)
 
         self._next_button = Button('>', self._go_to_next_part)
         self._next_button.view.set_xy(
-            self._screen.get_width() - self._next_button.view.width - 52,
-            self._screen.get_height() - 78
+            self.screen.get_width() - self._next_button.view.width - 52,
+            self.screen.get_height() - 78
         )
         self._scene_objects.append(self._next_button)
 
@@ -215,7 +231,7 @@ class HowToPlay(Scene):
             self._scene_objects.append(self._next_button)
 
     def _return_to_main_menu(self):
-        self._scenes['main_menu'].start()
+        self.scene_manager.start_scene('main_menu')
 
     def update(self, current_time, events):
         for game_object in self._scene_objects:

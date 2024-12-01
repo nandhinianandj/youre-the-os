@@ -2,8 +2,8 @@ from os import path
 import pygame
 
 from game_info import TITLE
-from lib.drawable import Drawable
-from lib.ui.fonts import FONT_PRIMARY_XXLARGE
+from engine.drawable import Drawable
+from ui.fonts import FONT_PRIMARY_XXLARGE
 from window_size import WINDOW_WIDTH
 
 _icon_image = pygame.image.load(path.join('assets', 'icon.png'))
@@ -14,8 +14,7 @@ class MainMenuTitleView(Drawable):
         self._main_menu_title = main_menu_title
         super().__init__()
 
-        original_size_icon = _icon_image
-        self._icon = pygame.transform.scale(original_size_icon, (200, 200))
+        self._icon = _icon_image
 
         self._text = FONT_PRIMARY_XXLARGE.render(TITLE, True, (61, 154, 226))
 

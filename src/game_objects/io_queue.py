@@ -1,10 +1,10 @@
 from collections import deque
-from random import randint
 
-from lib.constants import ONE_SECOND
-from lib import event_manager
-from lib.game_object import GameObject
-from lib.game_event_type import GameEventType
+from constants import ONE_SECOND
+import game_monitor
+from engine.game_object import GameObject
+from engine.game_event_type import GameEventType
+from engine.random import randint
 from game_objects.views.io_queue_view import IoQueueView
 
 _MAX_WAITING_TIME = 5000
@@ -39,7 +39,7 @@ class IoQueue(GameObject):
 
     def wait_for_event(self, callback):
         self._subscriber_queue.append(
-            _IoEventWaiter(self._process_manager.game.current_time, callback)
+            _IoEventWaiter(self._process_manager.stage.current_time, callback)
         )
 
     @property
@@ -55,7 +55,7 @@ class IoQueue(GameObject):
             self._event_count -= 1
             callback = self._subscriber_queue.popleft().callback
             callback()
-        event_manager.event_io_queue(self.event_count)
+        game_monitor.notify_io_event_count(self.event_count)
 
     def _check_if_clicked_on(self, event):
         if event.type == GameEventType.MOUSE_LEFT_CLICK:
@@ -91,7 +91,7 @@ class IoQueue(GameObject):
                 self._event_count = randint(
                     self._event_count + 1, len(self._subscriber_queue)
                 )
-                event_manager.event_io_queue(self._event_count)
+                game_monitor.notify_io_event_count(self._event_count)
 
         self._display_blink_color = False
         if self._event_count > 0:

@@ -1,20 +1,24 @@
 from datetime import timedelta
 
-from lib.constants import ONE_SECOND
-from lib.game_object import GameObject
+from constants import ONE_SECOND
+from engine.game_object import GameObject
 from game_objects.views.uptime_manager_view import UptimeManagerView
 
 
 class UptimeManager(GameObject):
 
-    def __init__(self, game):
-        self._game = game
+    def __init__(self, stage):
+        self._stage = stage
 
-        self._last_update_time = game.current_time
+        self._last_update_time = stage.current_time
         self._uptime = 0
         self._uptime_text = '0:00:00'
 
         super().__init__(UptimeManagerView(self))
+
+    @property
+    def uptime_ms(self):
+        return self._uptime
 
     @property
     def uptime_text(self):
